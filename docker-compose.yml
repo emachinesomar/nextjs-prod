@@ -3,7 +3,7 @@ services:
     # Configuration for the Next.js service
     build:
       context: . # Set the build context to the current directory
-      dockerfile: Dockerfile.dev # Specify the Dockerfile to use (Dockerfile.dev)
+      dockerfile: Dockerfile # Specify the Dockerfile to use (Dockerfile)
     command: npm run dev # Command to start the Next.js development server
     ports:
       - "3000:3000" # Map port 3000 in the container to port 3000 on the host

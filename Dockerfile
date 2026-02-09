@@ -17,7 +17,7 @@ ENV NODE_ENV=production
 COPY package.json package-lock.json ./
 
 # Install project dependencies using npm ci (ensures a clean, reproducible install)
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm ci && npm cache clean --force
 
 # Copy the rest of the application source code into the container
 COPY . .
@@ -45,8 +45,8 @@ COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 # Copy the static build output from the build stage to Nginx's default HTML serving directory
 COPY --from=builder --chown=nginx:nginx /app/out /usr/share/nginx/html
 
-# Expose port 80 to allow HTTP traffic
-EXPOSE 80
+# Expose port 3000 to allow HTTP traffic
+EXPOSE 3000
 
 # Start Nginx directly with custom config
 ENTRYPOINT ["nginx", "-c", "/etc/nginx/nginx.conf"]
